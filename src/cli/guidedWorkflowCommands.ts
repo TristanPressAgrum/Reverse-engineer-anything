@@ -1,5 +1,4 @@
 import { z } from "incur";
-import { accessGuidedWorkflows } from "../application/GuidedWorkflowAccess.js";
 import { CLI_COMMANDS } from "../cliCommandNames.js";
 import { logCliCommand } from "../cliLogging.js";
 import { AnalysisInputError } from "../domain/analysisErrorCore.js";
@@ -54,6 +53,8 @@ export const registerGuidedWorkflowCommands = (
             );
           arguments_ = parsed.value;
         }
+        const { accessGuidedWorkflows } =
+          await import("../application/GuidedWorkflowAccess.js");
         const result = accessGuidedWorkflows({
           action: options.action,
           ...(options.workflowId === undefined

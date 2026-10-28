@@ -2,7 +2,7 @@ import type { EvidenceMcpServer } from "./EvidenceMcpServer.js";
 import { accessGuidedWorkflows } from "../application/GuidedWorkflowAccess.js";
 import { toolContract } from "../contracts/toolContracts.js";
 import { applicationToolRegistrationOptions } from "./toolRegistrationOptions.js";
-import { promptsForToolFamilies } from "../contracts/promptContracts.js";
+import { promptsForToolFamilies } from "../contracts/promptToolFamilyScope.js";
 
 /** Register provider-free access to the existing guided prompt contracts. */
 export const registerGuidedWorkflowTool = (server: EvidenceMcpServer): void => {

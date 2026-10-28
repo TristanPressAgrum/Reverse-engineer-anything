@@ -7,10 +7,10 @@ import type { AnalysisOperationPort } from "../application/AnalysisProvider.js";
 import type { BinarySessionPort } from "../application/binary/BinarySessionPort.js";
 import {
   guidedPromptArgumentValues,
-  promptsForToolFamilies,
   renderGuidedPrompt,
   type PromptContract,
 } from "../contracts/promptContracts.js";
+import { promptsForToolFamilies } from "../contracts/promptToolFamilyScope.js";
 import {
   createPromptCompletionSource,
   type PromptCompletionSource,
