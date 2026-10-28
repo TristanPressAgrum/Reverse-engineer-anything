@@ -628,22 +628,31 @@ it("reports exhausted host capacity at the version probe as a retryable constrai
   onTestFinished(() => {
     adbTestHooks.versionProbeFailure = undefined;
   });
-  const projected = await refusedBy(providerOver(binary), {
-    operation: "list_adb_devices",
-    input: {},
-  });
-  expect(projected).toMatchObject({
-    code: "resource_constraint",
-    retryable: true,
-    remediation: { action: expect.any(String) as unknown },
-    details: {
-      diagnostics: {
-        selected_binary: binary,
-        path_source: "environment",
-        filesystem_error: "EMFILE",
+  // The readiness operation runs the same probe as the device operations.
+  for (const operation of ["inspect_adb_client", "list_adb_devices"] as const) {
+    const projected = await refusedBy(providerOver(binary), {
+      operation,
+      input: {},
+    });
+    expect(projected).toMatchObject({
+      code: "resource_constraint",
+      retryable: true,
+      remediation: {
+        action: expect.stringContaining("does not need to change") as unknown,
       },
-    },
-  });
+      details: {
+        diagnostics: {
+          selected_binary: binary,
+          path_source: "environment",
+          filesystem_error: "EMFILE",
+        },
+      },
+    });
+    // One remediation text, owned by the configuration classifier.
+    expect(projected.details?.diagnostics).toMatchObject({
+      remediation: projected.remediation?.action,
+    });
+  }
 });
 
 it("reports relative adb configuration as an actionable refusal", async () => {

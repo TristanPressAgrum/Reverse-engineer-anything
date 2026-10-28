@@ -31,14 +31,15 @@ selected path the host refuses to execute, such as a directory or a file
 without execute permission (`EACCES`) or one the host does not permit
 (`EPERM`), and any other spawn error report `capability_unavailable` naming
 that path. Exhausted host capacity (`EAGAIN`, `EMFILE`, `ENFILE` or `ENOMEM`)
-is a `runtime_unavailable` provider rejection, not a configuration one. It
-says the host could not start adb and asks for a retry after freeing
-processes or descriptors, without blaming `REA_ADB_PATH`. When adb never
-started, the refusal diagnostics record the spawn error as `filesystem_error`
-with `path_source`, never as an `exit_code`. A device operation whose adb
-cannot start for lack of host capacity, at its version probe or at a later
-adb command, reports a retryable `capacity` resource constraint rather than a
-capability refusal or an adb protocol failure.
+is not a configuration failure. `inspect_adb_client`, and any device
+operation whose adb cannot start at its version probe or at a later adb
+command, report a retryable `capacity` resource constraint rather than a
+capability refusal or an adb protocol failure; the `binary_session` inventory
+reports the provider as `runtime_unavailable`. Both say the host could not
+start adb and ask for a retry after freeing processes or descriptors, without
+blaming `REA_ADB_PATH`. When adb never started, the refusal diagnostics record
+the spawn error as `filesystem_error` with `path_source`, never as an
+`exit_code`.
 The `binary_session` inventory uses the same bounded client-version probe; it
 does not query devices, start the adb server, or establish that a requested
 serial is reachable. Device state is checked by each device operation.

@@ -22,6 +22,10 @@ import { isUnresolvedPathErrorCode } from "../filesystem/RegularFile.js";
 /** Environment key selecting the caller's adb binary. */
 export const ADB_BINARY_ENV = "REA_ADB_PATH";
 
+/** One remediation for every host-capacity spawn failure; the selected path is not at fault. */
+export const adbHostCapacityRemediation = (code: string): string =>
+  `The host ran out of process, memory or file-descriptor capacity (${code}). Close unused processes or files, or raise the process or open-file limit of the REA process, then retry; ${ADB_BINARY_ENV} does not need to change.`;
+
 const VERSION_TIMEOUT_MS = 10_000;
 const VERSION_MAX_OUTPUT_BYTES = 64 * 1024;
 
@@ -209,7 +213,7 @@ export const inspectAdbClient = async (
           `The host could not start the selected adb binary (${code}): ${selection.binary}`,
           {
             ...facts,
-            remediation: `The host ran out of process, memory or file-descriptor capacity (${code}). Close unused processes or files, or raise the process or open-file limit of the REA process, then retry; ${ADB_BINARY_ENV} does not need to change`,
+            remediation: adbHostCapacityRemediation(code),
           },
           { cause },
         );

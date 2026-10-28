@@ -19,7 +19,10 @@ import {
 } from "../process/ExecFileOutput.js";
 import { packageChangeFailureReason } from "./AdbShellOutput.js";
 import { isSuccessfulDaemonStartNotice } from "./AdbDeviceOutput.js";
-import type { AdbBinarySelection } from "./AdbConfiguration.js";
+import {
+  adbHostCapacityRemediation,
+  type AdbBinarySelection,
+} from "./AdbConfiguration.js";
 
 const STDERR_EXCERPT_CHARACTERS = 512;
 
@@ -112,8 +115,7 @@ export const adbSpawnCapacityError = (
       cause,
       diagnostics,
       retryable: true,
-      remediationAction:
-        "The host ran out of process, memory or file-descriptor capacity. Close unused processes or files, or raise the process or open-file limit of the REA process, then retry.",
+      remediationAction: adbHostCapacityRemediation(spawnError),
     },
   );
 

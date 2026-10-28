@@ -615,15 +615,22 @@ describe("execFileOutput failure metadata", () => {
       code: 7,
     });
   });
-  it.skipIf(process.platform === "win32")(
-    "admits a synchronously thrown spawn error with its code and empty capture",
-    async () => {
+  // Without stopSignal the command takes Node's execFile; adb always passes
+  // one and takes the owned spawn route. Both throw ENOTDIR synchronously.
+  it.skipIf(process.platform === "win32").each([
+    { route: "execFile", options: {} },
+    { route: "spawn", options: { stopSignal: "SIGTERM" as const } },
+  ])(
+    "admits a synchronously thrown spawn error through $route with its code and empty capture",
+    async ({ options }) => {
       const root = await createTestTempDirectory("rea-exec-enotdir-");
       const file = join(root, "regular");
       await writeFile(file, "");
-      const failure: unknown = await execFileOutput(join(file, "adb"), [
-        "version",
-      ]).then(
+      const failure: unknown = await execFileOutput(
+        join(file, "adb"),
+        ["version"],
+        options,
+      ).then(
         () => undefined,
         (cause: unknown) => cause,
       );
