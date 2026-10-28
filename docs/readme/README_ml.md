@@ -341,6 +341,8 @@ npx rea-agents@latest setup
 
 ## ഡോക്യുമെന്റേഷൻ
 
+ബന്ധപ്പെട്ട ഗവേഷണ പ്രബന്ധങ്ങൾക്കും മൂല്യനിർണയ രീതികൾക്കും [ഗവേഷണ വായനപ്പട്ടിക](https://rea.tools/research/) (ഇംഗ്ലീഷ്) കാണുക.
+
 വെബ്സൈറ്റിലെ [പ്രായോഗിക ഗൈഡുകൾ](https://rea.tools/guides/) ഉപയോഗിച്ച് തുടങ്ങുക.
 കൃത്യമായ options, prerequisites, result contracts എന്നിവയ്ക്കായി:
 

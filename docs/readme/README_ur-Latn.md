@@ -418,6 +418,8 @@ REA version, target type, reproduce karne ke steps aur error output ke saath
 
 ## Documentation
 
+Mutaliqa papers aur evaluation ke tareeqon ke liye [tehqeeqi mutale ki fehrist](https://rea.tools/research/) (English) dekhein.
+
 Website ki [amli guides](https://rea.tools/guides/) se shuru karein.
 Exact options, prerequisites aur result contracts ke liye:
 

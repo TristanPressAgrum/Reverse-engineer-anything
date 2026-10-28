@@ -415,6 +415,8 @@ tipul țintei analizate, pașii de reproducere și mesajele de eroare.
 
 ## Documentație
 
+Pentru lucrări conexe și metode de evaluare, consultă [lista de lecturi de cercetare](https://rea.tools/research/) (în engleză).
+
 Începe cu [ghidurile practice](https://rea.tools/guides/) de pe site.
 Pentru opțiunile exacte, cerințele preliminare și contractele rezultatelor:
 

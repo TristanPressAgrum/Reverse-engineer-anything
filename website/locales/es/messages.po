@@ -65,25 +65,26 @@ msgstr "Por N0zoM1z0 * 10 octubre 2026"
 
 #. {ph0}: <span aria-hidden="true">
 #. {ph1}: </span>
-#: website/public/blog/index.html:253
-#: website/public/blog/reverse-engineering-models/index.html:892
-#: website/public/blog/touhou-reconstruction/index.html:1089
-#: website/public/contributors/index.html:1140
-#: website/public/examples/dino-lab/index.html:484
-#: website/public/faq/index.html:582
-#: website/public/first-investigation/index.html:543
-#: website/public/get-started/index.html:1826
-#: website/public/guides/browser/index.html:516
-#: website/public/guides/index.html:310
-#: website/public/guides/javascript/index.html:512
-#: website/public/guides/native/index.html:518
-#: website/public/guides/rl-environments/index.html:507
-#: website/public/index.html:1312 website/public/showcase/aegis/index.html:817
-#: website/public/showcase/ctf/index.html:786
-#: website/public/showcase/dx-ball/index.html:794
-#: website/public/showcase/index.html:346
-#: website/public/showcase/notion/index.html:640
-#: website/public/showcase/th04/index.html:809
+#: website/public/blog/index.html:255
+#: website/public/blog/reverse-engineering-models/index.html:894
+#: website/public/blog/touhou-reconstruction/index.html:1091
+#: website/public/contributors/index.html:1142
+#: website/public/examples/dino-lab/index.html:486
+#: website/public/faq/index.html:584
+#: website/public/first-investigation/index.html:545
+#: website/public/get-started/index.html:1828
+#: website/public/guides/browser/index.html:518
+#: website/public/guides/index.html:312
+#: website/public/guides/javascript/index.html:514
+#: website/public/guides/native/index.html:520
+#: website/public/guides/rl-environments/index.html:509
+#: website/public/index.html:1314 website/public/research/index.html:356
+#: website/public/showcase/aegis/index.html:819
+#: website/public/showcase/ctf/index.html:788
+#: website/public/showcase/dx-ball/index.html:796
+#: website/public/showcase/index.html:348
+#: website/public/showcase/notion/index.html:642
+#: website/public/showcase/th04/index.html:811
 #, python-brace-format
 msgctxt "shared"
 msgid "{ph0}↑{ph1} Top"
@@ -116,7 +117,8 @@ msgstr ""
 #: website/public/guides/javascript/index.html:116
 #: website/public/guides/native/index.html:116
 #: website/public/guides/rl-environments/index.html:116
-#: website/public/index.html:118 website/public/showcase/aegis/index.html:117
+#: website/public/index.html:118 website/public/research/index.html:116
+#: website/public/showcase/aegis/index.html:117
 #: website/public/showcase/ctf/index.html:116
 #: website/public/showcase/dx-ball/index.html:116
 #: website/public/showcase/index.html:116
@@ -139,7 +141,8 @@ msgstr "Inicio de REA"
 #: website/public/guides/javascript/index.html:120
 #: website/public/guides/native/index.html:120
 #: website/public/guides/rl-environments/index.html:120
-#: website/public/index.html:122 website/public/showcase/aegis/index.html:121
+#: website/public/index.html:122 website/public/research/index.html:120
+#: website/public/showcase/aegis/index.html:121
 #: website/public/showcase/ctf/index.html:120
 #: website/public/showcase/dx-ball/index.html:120
 #: website/public/showcase/index.html:120
@@ -162,7 +165,8 @@ msgstr "Navegación principal"
 #: website/public/guides/javascript/index.html:137
 #: website/public/guides/native/index.html:137
 #: website/public/guides/rl-environments/index.html:137
-#: website/public/index.html:139 website/public/showcase/aegis/index.html:138
+#: website/public/index.html:139 website/public/research/index.html:137
+#: website/public/showcase/aegis/index.html:138
 #: website/public/showcase/ctf/index.html:137
 #: website/public/showcase/dx-ball/index.html:137
 #: website/public/showcase/index.html:137
@@ -185,7 +189,8 @@ msgstr "REA en GitHub"
 #: website/public/guides/javascript/index.html:157
 #: website/public/guides/native/index.html:157
 #: website/public/guides/rl-environments/index.html:157
-#: website/public/index.html:159 website/public/showcase/aegis/index.html:158
+#: website/public/index.html:159 website/public/research/index.html:157
+#: website/public/showcase/aegis/index.html:158
 #: website/public/showcase/ctf/index.html:157
 #: website/public/showcase/dx-ball/index.html:157
 #: website/public/showcase/index.html:157
@@ -208,7 +213,8 @@ msgstr "Únete a REA en Discord"
 #: website/public/guides/javascript/index.html:176
 #: website/public/guides/native/index.html:176
 #: website/public/guides/rl-environments/index.html:176
-#: website/public/index.html:178 website/public/showcase/aegis/index.html:177
+#: website/public/index.html:178 website/public/research/index.html:176
+#: website/public/showcase/aegis/index.html:177
 #: website/public/showcase/ctf/index.html:176
 #: website/public/showcase/dx-ball/index.html:176
 #: website/public/showcase/index.html:176
@@ -218,7 +224,7 @@ msgctxt "shared"
 msgid "Follow REA on X"
 msgstr "Sigue a REA en X"
 
-#: website/public/blog/index.html:253
+#: website/public/blog/index.html:255
 msgctxt "page:blog/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -1860,7 +1866,7 @@ msgctxt "page:blog/touhou-reconstruction/index.html"
 msgid "Touhou reconstruction essay"
 msgstr "Ensayo de reconstrucción de Touhou"
 
-#: website/public/blog/touhou-reconstruction/index.html:1089
+#: website/public/blog/touhou-reconstruction/index.html:1091
 msgctxt "page:blog/touhou-reconstruction/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -2262,7 +2268,7 @@ msgctxt "page:examples/dino-lab/index.html"
 msgid "Copy dinosaur analysis prompt"
 msgstr "Copie el mensaje de análisis de dinosaurios"
 
-#: website/public/examples/dino-lab/index.html:484
+#: website/public/examples/dino-lab/index.html:486
 msgctxt "page:examples/dino-lab/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -2890,7 +2896,7 @@ msgctxt "page:faq/index.html"
 msgid "Copy scoped setup command"
 msgstr "Copiar comando de configuración de ámbito"
 
-#: website/public/faq/index.html:582
+#: website/public/faq/index.html:584
 msgctxt "page:faq/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -3270,7 +3276,7 @@ msgctxt "page:first-investigation/index.html"
 msgid "Copy formatter check command"
 msgstr "Comando Copiar comprobación del formateador"
 
-#: website/public/first-investigation/index.html:543
+#: website/public/first-investigation/index.html:545
 msgctxt "page:first-investigation/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -3898,7 +3904,7 @@ msgctxt "page:get-started/index.html"
 msgid "Copy provider diagnosis command"
 msgstr "Copie el comando de diagnóstico del proveedor"
 
-#: website/public/get-started/index.html:1826
+#: website/public/get-started/index.html:1828
 msgctxt "page:get-started/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -4382,7 +4388,7 @@ msgctxt "page:guides/browser/index.html"
 msgid "Copy read the loaded scripts"
 msgstr "Copiar leer los scripts cargados"
 
-#: website/public/guides/browser/index.html:516
+#: website/public/guides/browser/index.html:518
 msgctxt "page:guides/browser/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -4532,7 +4538,7 @@ msgstr ""
 "Aprenda REA a través de breves ejemplos trabajados: un cálculo nativo, una "
 "exportación Electron CSV y una solicitud del navegador."
 
-#: website/public/guides/index.html:310
+#: website/public/guides/index.html:312
 msgctxt "page:guides/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -4993,7 +4999,7 @@ msgctxt "page:guides/javascript/index.html"
 msgid "Copy static application analysis"
 msgstr "Copiar análisis de aplicaciones estáticas"
 
-#: website/public/guides/javascript/index.html:512
+#: website/public/guides/javascript/index.html:514
 msgctxt "page:guides/javascript/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -5597,7 +5603,7 @@ msgctxt "page:guides/native/index.html"
 msgid "Copy function analysis"
 msgstr "Análisis de la función de copia"
 
-#: website/public/guides/native/index.html:518
+#: website/public/guides/native/index.html:520
 msgctxt "page:guides/native/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -6387,7 +6393,7 @@ msgctxt "page:index.html"
 msgid "Copy Calculator analysis prompt"
 msgstr "Copie el mensaje de análisis de la calculadora"
 
-#: website/public/index.html:1312
+#: website/public/index.html:1314
 msgctxt "page:index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -7147,7 +7153,7 @@ msgctxt "page:showcase/aegis/index.html"
 msgid "Copy APK inspection command"
 msgstr "Copie el comando de inspección APK"
 
-#: website/public/showcase/aegis/index.html:817
+#: website/public/showcase/aegis/index.html:819
 msgctxt "page:showcase/aegis/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -7890,7 +7896,7 @@ msgctxt "page:showcase/ctf/index.html"
 msgid "Copy CTF solver commands"
 msgstr "Copiar comandos del solucionador CTF"
 
-#: website/public/showcase/ctf/index.html:786
+#: website/public/showcase/ctf/index.html:788
 msgctxt "page:showcase/ctf/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -8692,7 +8698,7 @@ msgctxt "page:showcase/dx-ball/index.html"
 msgid "Copy DX-Ball analysis command"
 msgstr "Copie el comando de análisis DX-Ball"
 
-#: website/public/showcase/dx-ball/index.html:794
+#: website/public/showcase/dx-ball/index.html:796
 msgctxt "page:showcase/dx-ball/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -8891,7 +8897,7 @@ msgstr ""
 "demostraciones: un autenticador de Android, DX-Ball, Notion, TH04 y un "
 "comprobador de indicadores de DownUnderCTF."
 
-#: website/public/showcase/index.html:346
+#: website/public/showcase/index.html:348
 msgctxt "page:showcase/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -9534,7 +9540,7 @@ msgctxt "page:showcase/notion/index.html"
 msgid "Restoring rich clipboard data on paste"
 msgstr "Restauración de datos enriquecidos del portapapeles al pegar"
 
-#: website/public/showcase/notion/index.html:640
+#: website/public/showcase/notion/index.html:642
 msgctxt "page:showcase/notion/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -10387,7 +10393,7 @@ msgctxt "page:showcase/th04/index.html"
 msgid "Copy readable aimed-ring calculation"
 msgstr "Cálculo de anillo apuntado legible por copia"
 
-#: website/public/showcase/th04/index.html:809
+#: website/public/showcase/th04/index.html:811
 msgctxt "page:showcase/th04/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -10892,7 +10898,8 @@ msgstr "Mismo espaciado: 256 ÷ 16 = 16 unidades de ángulo = 22,5°"
 #: website/public/guides/javascript/index.html:122
 #: website/public/guides/native/index.html:122
 #: website/public/guides/rl-environments/index.html:122
-#: website/public/index.html:124 website/public/showcase/aegis/index.html:123
+#: website/public/index.html:124 website/public/research/index.html:122
+#: website/public/showcase/aegis/index.html:123
 #: website/public/showcase/ctf/index.html:122
 #: website/public/showcase/dx-ball/index.html:122
 #: website/public/showcase/index.html:122
@@ -10915,7 +10922,8 @@ msgstr "Casos prácticos"
 #: website/public/guides/javascript/index.html:123
 #: website/public/guides/native/index.html:123
 #: website/public/guides/rl-environments/index.html:123
-#: website/public/index.html:125 website/public/showcase/aegis/index.html:124
+#: website/public/index.html:125 website/public/research/index.html:123
+#: website/public/showcase/aegis/index.html:124
 #: website/public/showcase/ctf/index.html:123
 #: website/public/showcase/dx-ball/index.html:123
 #: website/public/showcase/index.html:123
@@ -10938,7 +10946,8 @@ msgstr "Blog"
 #: website/public/guides/javascript/index.html:121
 #: website/public/guides/native/index.html:121
 #: website/public/guides/rl-environments/index.html:121
-#: website/public/index.html:123 website/public/showcase/aegis/index.html:122
+#: website/public/index.html:123 website/public/research/index.html:121
+#: website/public/showcase/aegis/index.html:122
 #: website/public/showcase/ctf/index.html:121
 #: website/public/showcase/dx-ball/index.html:121
 #: website/public/showcase/index.html:121
@@ -10961,7 +10970,8 @@ msgstr "Primeros pasos"
 #: website/public/guides/javascript/index.html:124
 #: website/public/guides/native/index.html:124
 #: website/public/guides/rl-environments/index.html:124
-#: website/public/index.html:126 website/public/showcase/aegis/index.html:125
+#: website/public/index.html:126 website/public/research/index.html:124
+#: website/public/showcase/aegis/index.html:125
 #: website/public/showcase/ctf/index.html:124
 #: website/public/showcase/dx-ball/index.html:124
 #: website/public/showcase/index.html:124
@@ -10970,52 +10980,6 @@ msgstr "Primeros pasos"
 msgctxt "shared"
 msgid "Guides"
 msgstr "Guías"
-
-#: website/public/blog/index.html:245
-#: website/public/blog/reverse-engineering-models/index.html:884
-#: website/public/blog/touhou-reconstruction/index.html:1081
-#: website/public/contributors/index.html:1132
-#: website/public/examples/dino-lab/index.html:476
-#: website/public/faq/index.html:574
-#: website/public/first-investigation/index.html:535
-#: website/public/get-started/index.html:1818
-#: website/public/guides/browser/index.html:508
-#: website/public/guides/index.html:302
-#: website/public/guides/javascript/index.html:504
-#: website/public/guides/native/index.html:510
-#: website/public/guides/rl-environments/index.html:499
-#: website/public/index.html:1304 website/public/showcase/aegis/index.html:809
-#: website/public/showcase/ctf/index.html:778
-#: website/public/showcase/dx-ball/index.html:786
-#: website/public/showcase/index.html:338
-#: website/public/showcase/notion/index.html:632
-#: website/public/showcase/th04/index.html:801
-msgctxt "shared"
-msgid "Source"
-msgstr "Código fuente"
-
-#: website/public/blog/index.html:246
-#: website/public/blog/reverse-engineering-models/index.html:885
-#: website/public/blog/touhou-reconstruction/index.html:1082
-#: website/public/contributors/index.html:1133
-#: website/public/examples/dino-lab/index.html:477
-#: website/public/faq/index.html:575
-#: website/public/first-investigation/index.html:536
-#: website/public/get-started/index.html:1819
-#: website/public/guides/browser/index.html:509
-#: website/public/guides/index.html:303
-#: website/public/guides/javascript/index.html:505
-#: website/public/guides/native/index.html:511
-#: website/public/guides/rl-environments/index.html:500
-#: website/public/index.html:1305 website/public/showcase/aegis/index.html:810
-#: website/public/showcase/ctf/index.html:779
-#: website/public/showcase/dx-ball/index.html:787
-#: website/public/showcase/index.html:339
-#: website/public/showcase/notion/index.html:633
-#: website/public/showcase/th04/index.html:802
-msgctxt "shared"
-msgid "MIT license"
-msgstr "Licencia MIT"
 
 #: website/public/blog/index.html:247
 #: website/public/blog/reverse-engineering-models/index.html:886
@@ -11030,15 +10994,16 @@ msgstr "Licencia MIT"
 #: website/public/guides/javascript/index.html:506
 #: website/public/guides/native/index.html:512
 #: website/public/guides/rl-environments/index.html:501
-#: website/public/index.html:1306 website/public/showcase/aegis/index.html:811
+#: website/public/index.html:1306 website/public/research/index.html:348
+#: website/public/showcase/aegis/index.html:811
 #: website/public/showcase/ctf/index.html:780
 #: website/public/showcase/dx-ball/index.html:788
 #: website/public/showcase/index.html:340
 #: website/public/showcase/notion/index.html:634
 #: website/public/showcase/th04/index.html:803
 msgctxt "shared"
-msgid "Join the community"
-msgstr "Únete a la comunidad"
+msgid "Source"
+msgstr "Código fuente"
 
 #: website/public/blog/index.html:248
 #: website/public/blog/reverse-engineering-models/index.html:887
@@ -11053,12 +11018,61 @@ msgstr "Únete a la comunidad"
 #: website/public/guides/javascript/index.html:507
 #: website/public/guides/native/index.html:513
 #: website/public/guides/rl-environments/index.html:502
-#: website/public/index.html:1307 website/public/showcase/aegis/index.html:812
+#: website/public/index.html:1307 website/public/research/index.html:349
+#: website/public/showcase/aegis/index.html:812
 #: website/public/showcase/ctf/index.html:781
 #: website/public/showcase/dx-ball/index.html:789
 #: website/public/showcase/index.html:341
 #: website/public/showcase/notion/index.html:635
 #: website/public/showcase/th04/index.html:804
+msgctxt "shared"
+msgid "MIT license"
+msgstr "Licencia MIT"
+
+#: website/public/blog/index.html:249
+#: website/public/blog/reverse-engineering-models/index.html:888
+#: website/public/blog/touhou-reconstruction/index.html:1085
+#: website/public/contributors/index.html:1136
+#: website/public/examples/dino-lab/index.html:480
+#: website/public/faq/index.html:578
+#: website/public/first-investigation/index.html:539
+#: website/public/get-started/index.html:1822
+#: website/public/guides/browser/index.html:512
+#: website/public/guides/index.html:306
+#: website/public/guides/javascript/index.html:508
+#: website/public/guides/native/index.html:514
+#: website/public/guides/rl-environments/index.html:503
+#: website/public/index.html:1308 website/public/research/index.html:350
+#: website/public/showcase/aegis/index.html:813
+#: website/public/showcase/ctf/index.html:782
+#: website/public/showcase/dx-ball/index.html:790
+#: website/public/showcase/index.html:342
+#: website/public/showcase/notion/index.html:636
+#: website/public/showcase/th04/index.html:805
+msgctxt "shared"
+msgid "Join the community"
+msgstr "Únete a la comunidad"
+
+#: website/public/blog/index.html:250
+#: website/public/blog/reverse-engineering-models/index.html:889
+#: website/public/blog/touhou-reconstruction/index.html:1086
+#: website/public/contributors/index.html:1137
+#: website/public/examples/dino-lab/index.html:481
+#: website/public/faq/index.html:579
+#: website/public/first-investigation/index.html:540
+#: website/public/get-started/index.html:1823
+#: website/public/guides/browser/index.html:513
+#: website/public/guides/index.html:307
+#: website/public/guides/javascript/index.html:509
+#: website/public/guides/native/index.html:515
+#: website/public/guides/rl-environments/index.html:504
+#: website/public/index.html:1309 website/public/research/index.html:351
+#: website/public/showcase/aegis/index.html:814
+#: website/public/showcase/ctf/index.html:783
+#: website/public/showcase/dx-ball/index.html:791
+#: website/public/showcase/index.html:343
+#: website/public/showcase/notion/index.html:637
+#: website/public/showcase/th04/index.html:806
 msgctxt "shared"
 msgid "Follow us on X"
 msgstr "Síguenos en X"
@@ -13317,7 +13331,7 @@ msgctxt "page:blog/reverse-engineering-models/index.html"
 msgid "Selected reconstruction experiments"
 msgstr "Experimentos de reconstrucción seleccionados."
 
-#: website/public/blog/reverse-engineering-models/index.html:892
+#: website/public/blog/reverse-engineering-models/index.html:894
 msgctxt "page:blog/reverse-engineering-models/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -15157,7 +15171,8 @@ msgstr ""
 #: website/public/guides/javascript/index.html:503
 #: website/public/guides/native/index.html:509
 #: website/public/guides/rl-environments/index.html:498
-#: website/public/index.html:1303 website/public/showcase/aegis/index.html:808
+#: website/public/index.html:1303 website/public/research/index.html:345
+#: website/public/showcase/aegis/index.html:808
 #: website/public/showcase/ctf/index.html:777
 #: website/public/showcase/dx-ball/index.html:785
 #: website/public/showcase/index.html:337
@@ -15251,7 +15266,7 @@ msgctxt "page:contributors/index.html"
 msgid "GitHub username"
 msgstr "Nombre de usuario de GitHub"
 
-#: website/public/contributors/index.html:1140
+#: website/public/contributors/index.html:1142
 msgctxt "page:contributors/index.html"
 msgid "Back to top"
 msgstr "Volver arriba"
@@ -15712,7 +15727,7 @@ msgctxt "page:guides/rl-environments/index.html"
 msgid "Copy task prompt"
 msgstr ""
 
-#: website/public/guides/rl-environments/index.html:507
+#: website/public/guides/rl-environments/index.html:509
 msgctxt "page:guides/rl-environments/index.html"
 msgid "Back to top"
 msgstr ""
@@ -15928,6 +15943,7 @@ msgstr "Métodos y notas sobre reconstrucción."
 #: website/public/guides/rl-environments/index.html:83
 #: website/public/guides/rl-environments/index.html:96
 #: website/public/index.html:83 website/public/index.html:96
+#: website/public/research/index.html:83 website/public/research/index.html:96
 #: website/public/showcase/aegis/index.html:83
 #: website/public/showcase/aegis/index.html:96
 #: website/public/showcase/ctf/index.html:83
@@ -16020,6 +16036,269 @@ msgstr "REA-Ingeniería Inversa para su Agente de Codificación"
 msgctxt "page:index.html"
 msgid "See the full Calculator investigation"
 msgstr "Ver la investigación completa de la Calculadora"
+
+#: website/public/blog/index.html:245
+#: website/public/blog/reverse-engineering-models/index.html:884
+#: website/public/blog/touhou-reconstruction/index.html:1081
+#: website/public/contributors/index.html:1132
+#: website/public/examples/dino-lab/index.html:476
+#: website/public/faq/index.html:574
+#: website/public/first-investigation/index.html:535
+#: website/public/get-started/index.html:1818
+#: website/public/guides/browser/index.html:508
+#: website/public/guides/index.html:302
+#: website/public/guides/javascript/index.html:504
+#: website/public/guides/native/index.html:510
+#: website/public/guides/rl-environments/index.html:499
+#: website/public/index.html:1304 website/public/research/index.html:346
+#: website/public/showcase/aegis/index.html:809
+#: website/public/showcase/ctf/index.html:778
+#: website/public/showcase/dx-ball/index.html:786
+#: website/public/showcase/index.html:338
+#: website/public/showcase/notion/index.html:632
+#: website/public/showcase/th04/index.html:801
+msgctxt "shared"
+msgid "Research"
+msgstr "Investigación"
+
+#: website/public/research/index.html:111
+msgctxt "page:research/index.html"
+msgid "Skip to content"
+msgstr ""
+
+#. {ph0}: <a href="../">
+#. {ph1}: </a>
+#: website/public/research/index.html:201
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid "{ph0}Home{ph1} / Research"
+msgstr ""
+
+#: website/public/research/index.html:202
+msgctxt "page:research/index.html"
+msgid "AI reverse engineering research and benchmarks."
+msgstr ""
+
+#: website/public/research/index.html:203 website/public/research/index.html:7
+msgctxt "page:research/index.html"
+msgid ""
+"Papers on LLM decompilation, binary-source datasets and behavioral "
+"verification, with links to REA case studies and their evidence."
+msgstr ""
+
+#: website/public/research/index.html:210
+msgctxt "page:research/index.html"
+msgid "What does a decompilation result establish?"
+msgstr ""
+
+#: website/public/research/index.html:211
+msgctxt "page:research/index.html"
+msgid ""
+"Readable code, a successful build, agreement on selected inputs and complete"
+" application behavior answer different questions. These papers examine parts"
+" of that progression. Their reported scores belong to their own experiments;"
+" they are not benchmark results for REA."
+msgstr ""
+
+#: website/public/research/index.html:218
+msgctxt "page:research/index.html"
+msgid ""
+"REA (Reverse Engineer Anything) is a local reverse-engineering CLI and MCP "
+"server. It gives an agent evidence from binaries, applications and runtime "
+"observations. The agent uses that evidence to explain behavior, propose a "
+"reconstruction and check it against the selected target."
+msgstr ""
+
+#. {ph0}: <time datetime="2026-10-16" translate="no">2026-10-16</time>
+#: website/public/research/index.html:225
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"Sources checked on {ph0}. This reading list summarizes published abstracts "
+"and project descriptions; it does not reproduce the studies' experiments."
+msgstr ""
+
+#: website/public/research/index.html:233
+msgctxt "page:research/index.html"
+msgid "Models and iterative refinement"
+msgstr ""
+
+#: website/public/research/index.html:234
+msgctxt "page:research/index.html"
+msgid "Learning to decompile"
+msgstr ""
+
+#. {ph0}: <a href="https://aclanthology.org/2024.emnlp-main.203/" >
+#. {ph1}: </a >
+#: website/public/research/index.html:235
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}LLM4Decompile: Decompiling Binary Code with Large Language Models{ph1} "
+"(Tan et al., EMNLP 2024) studies models trained for direct decompilation and"
+" for refining Ghidra output. Its re-executability evaluations concern "
+"specified datasets and tests, not recovery of every behavior in an "
+"application."
+msgstr ""
+
+#: website/public/research/index.html:245
+msgctxt "page:research/index.html"
+msgid "Learning from program feedback"
+msgstr ""
+
+#. {ph0}: <a href="https://arxiv.org/abs/2606.16162v2" >
+#. {ph1}: </a >
+#: website/public/research/index.html:246
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}Binary Decompilation LLM with Feedback-Driven Multi-Turn "
+"Refinement{ph1} (Liu et al., 2026 preprint, version 2) introduces "
+"AutoDecompiler. It trains iterative revisions using compilation, execution "
+"and input/output feedback. This makes the quality of those checks part of "
+"the learning problem."
+msgstr ""
+
+#: website/public/research/index.html:256
+msgctxt "page:research/index.html"
+msgid "Separating validation stages"
+msgstr ""
+
+#. {ph0}: <a href="https://arxiv.org/abs/2604.23940" >
+#. {ph1}: </a >
+#: website/public/research/index.html:257
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}Constraint-Guided Multi-Agent Decompilation for Executable Binary "
+"Recovery{ph1} (Zhang et al., 2026 preprint) combines parsing, compilation "
+"and behavioral checks with iterative repair. Its use of generated tests is a"
+" reason to examine test coverage separately from build success."
+msgstr ""
+
+#: website/public/research/index.html:268
+msgctxt "page:research/index.html"
+msgid "Two benchmarks with similar names"
+msgstr ""
+
+#: website/public/research/index.html:269
+msgctxt "page:research/index.html"
+msgid "Decompiler evaluation in real programs"
+msgstr ""
+
+#. {ph0}: <a href="https://aclanthology.org/2025.findings-acl.1194/" >
+#. {ph1}: </a >
+#: website/public/research/index.html:270
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}DecompileBench: A Comprehensive Benchmark for Evaluating Decompilers in"
+" Real-World Scenarios{ph1} (Gao et al., Findings of ACL 2025) combines "
+"function extraction, runtime-aware validation and assessments of analyst "
+"usability. Functional correctness and readability are separate measurements."
+msgstr ""
+
+#: website/public/research/index.html:279
+msgctxt "page:research/index.html"
+msgid "Binary-to-source training data"
+msgstr ""
+
+#. {ph0}: <a href="https://arxiv.org/abs/2505.12668" >
+#. {ph1}: </a >
+#: website/public/research/index.html:280
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}Decompile-Bench: Million-Scale Binary-Source Function Pairs for Real-"
+"World Binary Decompilation{ph1} (Tan et al., 2025) focuses on large-scale "
+"paired data and evaluation for learned decompilers. Compiler settings and "
+"inlining complicate the correspondence between binary functions and their "
+"source. This is a different project from DecompileBench above."
+msgstr ""
+
+#: website/public/research/index.html:292
+msgctxt "page:research/index.html"
+msgid "Check beyond the supplied tests"
+msgstr ""
+
+#. {ph0}: <a href="https://arxiv.org/abs/2609.05370v1" >
+#. {ph1}: </a >
+#: website/public/research/index.html:293
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}When LLM Decompilers Recompile More and Preserve Less{ph1} (Liu, Raff "
+"and Micinski, 2026 preprint) introduces Decompile-Diverge, a differential-"
+"fuzzing oracle. It examines cases where a candidate builds and passes "
+"supplied tests but behaves differently on other inputs. Passing a fixed "
+"suite therefore needs a stated coverage boundary."
+msgstr ""
+
+#: website/public/research/index.html:303
+msgctxt "page:research/index.html"
+msgid ""
+"For a reconstruction, record the target version, inputs, compared outputs "
+"and unresolved paths. A binary match additionally needs the compiler context"
+" and exact compared extent. Keep those observations accessible alongside the"
+" explanation."
+msgstr ""
+
+#: website/public/research/index.html:311
+msgctxt "page:research/index.html"
+msgid "Follow the evidence in REA"
+msgstr ""
+
+#. {ph0}: <a href="../showcase/dx-ball/">
+#. {ph1}: </a>
+#: website/public/research/index.html:313
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}DX-Ball sound panning{ph1}: follow a native calculation into a "
+"reconstruction and its recorded checks."
+msgstr ""
+
+#. {ph0}: <a href="../showcase/notion/">
+#. {ph1}: </a>
+#: website/public/research/index.html:317
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}Notion's clipboard bridge{ph1}: trace behavior across Electron "
+"processes and inspect the supporting code."
+msgstr ""
+
+#. {ph0}: <a href="../blog/reverse-engineering-models/" >
+#. {ph1}: </a >
+#: website/public/research/index.html:322
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"{ph0}General models and specialist models{ph1}: examine compiler context, "
+"experimental feedback and the limits of an oracle."
+msgstr ""
+
+#. {ph0}: <a href="../first-investigation/">
+#. {ph1}: </a>
+#. {ph2}: <a href="https://github.com/morluto/rea">
+#. {ph3}: </a>
+#: website/public/research/index.html:329
+#, python-brace-format
+msgctxt "page:research/index.html"
+msgid ""
+"Start with the {ph0}first investigation{ph1}, or use the {ph2}source "
+"repository{ph3} for contracts and reproducible development workflows."
+msgstr ""
+
+#: website/public/research/index.html:6
+msgctxt "page:research/index.html"
+msgid "AI Reverse Engineering Research and Benchmarks — REA"
+msgstr ""
+
+#: website/public/research/index.html:356
+msgctxt "page:research/index.html"
+msgid "Back to top"
+msgstr ""
 
 #~ msgctxt "page:index.html"
 #~ msgid "Calculator: by hand and with an agent"
