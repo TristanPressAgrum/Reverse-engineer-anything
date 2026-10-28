@@ -20,6 +20,7 @@ import {
   projectionCoverage,
   projectionEvidenceIdSchema,
   unavailableComponentSchema,
+  type ProjectedInventoryEntry,
 } from "../mobileApplicationGraphProjection.js";
 import { compareUnicodeCodePoints } from "../unicodeCodePointOrder.js";
 import { err, ok, type Result } from "../result.js";
@@ -95,7 +96,8 @@ export const projectHarmonyInventory = (
       if (child !== undefined) children.push(child);
     }
   }
-  const classified = classify(all);
+  const manifests = classifyManifests(fileEntries);
+  const classified = classify(all, manifests.components);
   const classifiedFiles = new Set([
     ...Object.values(classified).flat(),
     ...children,
@@ -139,9 +141,7 @@ export const projectHarmonyInventory = (
     source_evidence_ids: evidence
       .map(({ evidence_id: id }) => id)
       .sort(compareUnicodeCodePoints),
-    packaging_model: packagingModel(
-      fileEntries.filter(({ path }) => !isResourcePath(path)),
-    ),
+    packaging_model: manifests.packagingModel,
     components: classified,
     unclassified_components: all.filter(
       (component) => !classifiedFiles.has(component),
@@ -189,24 +189,29 @@ const harmonyRootFormat = (
   return ok(root);
 };
 
-const packagingModel = (
-  manifests: readonly { readonly path: string }[],
-): HarmonyApplicationProjectionResult["packaging_model"] => {
-  const stage = manifests.some(({ path }) =>
-    /(?:^|\/)module\.json$/iu.test(path),
-  );
-  const fa = manifests.some(({ path }) => /(?:^|\/)config\.json$/iu.test(path));
-  if (stage) return "stage";
-  if (fa) return "fa";
-  return "unknown";
+/**
+ * ZIP manifest names are case-sensitive. Classify each file path once for
+ * both consumers; its model hint survives an unavailable content identity.
+ */
+const classifyManifests = (entries: readonly ProjectedInventoryEntry[]) => {
+  const components: Component[] = [];
+  let packagingModel: HarmonyApplicationProjectionResult["packaging_model"] =
+    "unknown";
+  for (const { path, component } of entries) {
+    const name = /(?:^|\/)(module\.json|config\.json|pack\.info)$/u.exec(
+      path,
+    )?.[1];
+    if (name === undefined || isResourcePath(path)) continue;
+    if (component !== undefined) components.push(component);
+    if (name === "module.json") packagingModel = "stage";
+    else if (name === "config.json" && packagingModel === "unknown")
+      packagingModel = "fa";
+  }
+  return { components, packagingModel };
 };
 
-const classify = (all: readonly Component[]) => ({
-  manifests: all.filter(
-    ({ path }) =>
-      /(?:^|\/)(?:module\.json|config\.json|pack\.info)$/iu.test(path) &&
-      !isResourcePath(path),
-  ),
+const classify = (all: readonly Component[], manifests: Component[]) => ({
+  manifests,
   bytecode: all.filter(({ path }) => /\.(?:abc|pa)$/iu.test(path)),
   resources: all.filter(({ path }) => isResourcePath(path)),
   native_libraries: all.filter(
