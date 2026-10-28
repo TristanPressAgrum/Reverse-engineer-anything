@@ -1,27 +1,31 @@
+import { execFile } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { expect, it } from "vitest";
-import { createCli } from "./cli.js";
 
-const run = async (arguments_: string[]) => {
-  const cli = createCli({});
-  let stdout = "";
-  let exitCode = 0;
-  const previousExitCode = process.exitCode;
-  process.exitCode = 0;
-  try {
-    await cli.serve([...arguments_, "--json"], {
-      env: {},
-      exit: (code) => {
-        exitCode = code;
+const entrypoint = fileURLToPath(
+  new URL("../../../scripts/rea.mjs", import.meta.url),
+);
+const run = (arguments_: string[]) =>
+  new Promise<{ exitCode: number; stdout: string }>((resolve, reject) => {
+    execFile(
+      process.execPath,
+      [entrypoint, ...arguments_, "--json"],
+      {
+        env: { PATH: process.env.PATH, REA_LOG_LEVEL: "silent" },
+        timeout: 10_000,
+        maxBuffer: 1024 * 1024,
       },
-      stdout: (chunk) => {
-        stdout += chunk;
+      (error, stdout, stderr) => {
+        if (error !== null && typeof error.code !== "number")
+          return reject(error);
+        if (stderr !== "") return reject(new Error(stderr));
+        resolve({
+          exitCode: typeof error?.code === "number" ? error.code : 0,
+          stdout,
+        });
       },
-    });
-    return { exitCode: process.exitCode || exitCode, stdout };
-  } finally {
-    process.exitCode = previousExitCode ?? 0;
-  }
-};
+    );
+  });
 
 it("lists guided workflows through the public CLI without providers", async () => {
   const { exitCode, stdout } = await run(["guided-workflows"]);
@@ -111,4 +115,11 @@ it("reports missing required workflow arguments through the public CLI", async (
   expect(stdout).toContain(
     "Missing required arguments for investigate_feature: feature",
   );
+  expect(JSON.parse(stdout)).toMatchObject({
+    details: {
+      issues: expect.arrayContaining([
+        expect.objectContaining({ path: ["arguments", "feature"] }),
+      ]),
+    },
+  });
 });

@@ -67,7 +67,7 @@ export const guidedPromptArgumentSchema = (
 export const guidedPromptArgumentsSchema = (
   contract: Pick<PromptContract, "arguments">,
 ) =>
-  z.object(
+  z.strictObject(
     Object.fromEntries(
       Object.entries(contract.arguments).map(([name, argument]) => [
         name,
@@ -75,20 +75,6 @@ export const guidedPromptArgumentsSchema = (
       ]),
     ),
   );
-
-/** Adapter-neutral request schema for the guided_workflows tool. */
-export const guidedWorkflowsInputSchema = z.strictObject({
-  action: z.enum(["list", "render"]).describe("List workflows or render one"),
-  workflow_id: z
-    .string()
-    .min(1)
-    .optional()
-    .describe("Guided workflow identifier required for render"),
-  arguments: z
-    .record(z.string(), z.string())
-    .optional()
-    .describe("Caller-supplied string values for the selected workflow"),
-});
 
 /** Parse valid prompt fields and omit optional values that were not supplied. */
 export const guidedPromptArgumentValues = (
@@ -102,8 +88,10 @@ export const guidedPromptArgumentValues = (
   );
 
 /** Public workflow inventory details for non-prompt access paths. */
-export const guidedPromptInventory = () =>
-  PROMPT_CONTRACTS.map((contract) => ({
+export const guidedPromptInventory = (
+  contracts: readonly PromptContract[] = PROMPT_CONTRACTS,
+) =>
+  contracts.map((contract) => ({
     workflow_id: contract.name,
     description: contract.description,
     arguments: Object.entries(contract.arguments).map(([name, argument]) => ({

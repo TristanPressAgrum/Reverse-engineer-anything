@@ -14,7 +14,7 @@ export const promptArgumentsSchema = (
   const shape: Record<string, z.ZodType> = {};
   for (const [name, argument] of Object.entries(contract.arguments))
     shape[name] = argumentSchema(argument, completion);
-  return z.object(shape);
+  return z.strictObject(shape);
 };
 
 const argumentSchema = (
