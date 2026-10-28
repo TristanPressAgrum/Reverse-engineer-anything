@@ -155,9 +155,9 @@ it.each([
 
 it("validates device serials before contacting any device", async () => {
   const result = await serve(["inspect-adb-device", "bad serial", "--json"]);
+  expect(result.exitCode).toBe(1);
   expect(JSON.parse(result.stdout)).toMatchObject({
-    code: "invalid_request",
-    category: "invalid_input",
+    code: "VALIDATION_ERROR",
   });
 });
 
