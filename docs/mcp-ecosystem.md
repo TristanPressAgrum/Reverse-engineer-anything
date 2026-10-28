@@ -10,6 +10,8 @@ The capabilities below are upstream claims reviewed from documentation. No
 listed server was installed, connected, or benchmarked for this survey. The REA
 column describes source checkpoint `6688ed6db`; an upstream reference does not
 establish REA compatibility or authorize integration.
+The JEB startup note was updated 2026-10-28 using REA's linked Linux CE
+verification record; that runtime workflow was not repeated for this survey.
 
 The survey contains **30 implementations: 18 official/upstream-maintained and
 12 community implementations**. Browse [analysis and debugging](#official-and-upstream-maintained-analysis-servers),
@@ -93,11 +95,13 @@ support.
   macOS and Linux; native Windows packages do not yet include that executable.
   Session-scoped handles and the active BinaryView are significant to target
   identity. [Upstream guide](https://docs.binary.ninja/guide/mcp.html).
-- **JEB:** current upstream documentation describes `-c --mcp`, while the
-  [REA guide](jeb-analysis.md#bring-your-own-engine) records that this route was
-  unavailable in its JEB 5.48 verification. This documentation/runtime discrepancy
-  remains unresolved here; follow the recorded GUI or programmatic route rather
-  than replacing tested instructions from a web search alone.
+- **JEB:** the [REA guide](jeb-analysis.md#bring-your-own-engine) records
+  verified `-c --mcp` startup for Linux CE build `5.48.0.202610071539`.
+  The earlier licensed 5.48 build did not accept that flag and used the
+  programmatic route. Check your installed build's `-c --help` and live tool
+  catalog; the version number alone does not establish startup options or
+  supported operations. The linked CE audit covers selected native reads,
+  not Android decompilation or GUI project opening.
   [Upstream startup instructions](https://pnfsoftware.com/jeb/manual/mcp/).
 - **WinDbg:** Microsoft's setup guide requires version `1.2610.1001.0` or
   later. The proxy selects the sole available session automatically; multiple
