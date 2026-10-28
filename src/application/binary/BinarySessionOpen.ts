@@ -1,4 +1,3 @@
-import type { ArtifactResourceScope } from "../../artifacts/ArtifactResourceScope.js";
 import type { ExecutableFormatHint } from "../../domain/dosCom.js";
 import type {
   BinaryArchitecture,
@@ -14,6 +13,7 @@ import {
 } from "../../domain/analysisSnapshot.js";
 import type { AnalysisSnapshot } from "../../domain/analysisSnapshot.js";
 import { parseBinaryTarget } from "../BinaryTargetResolver.js";
+import type { ArtifactResourceScope } from "../../artifacts/ArtifactResourceScope.js";
 import {
   EvidenceIntegrityError,
   AnalysisSnapshotMismatchError,

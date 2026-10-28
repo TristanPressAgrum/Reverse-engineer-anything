@@ -1060,6 +1060,7 @@ const readElfMetadata = async (
     mips: {
       ...parsed.value.mips,
       abiFlags: declarations.value.abiFlags,
+      gnuAttributes: declarations.value.gnuAttributes,
       ...(declarations.value.sharedLoad === undefined
         ? {}
         : { sharedLoad: declarations.value.sharedLoad }),
