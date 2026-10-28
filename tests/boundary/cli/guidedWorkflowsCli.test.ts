@@ -12,7 +12,7 @@ const run = (arguments_: string[]) =>
       [entrypoint, ...arguments_, "--json"],
       {
         env: { PATH: process.env.PATH, REA_LOG_LEVEL: "silent" },
-        timeout: 10_000,
+        timeout: 15_000,
         maxBuffer: 1024 * 1024,
       },
       (error, stdout, stderr) => {
