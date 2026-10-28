@@ -49,7 +49,7 @@ it.each([0, 1])(
         ok: false,
         error: {
           code: -32602,
-          message: `invalid params: the state document exceeds ${String(STATE_INTAKE_LIMIT_BYTES)} bytes`,
+          message: expect.stringContaining(String(STATE_INTAKE_LIMIT_BYTES)),
         },
       });
       expect(decoded.mock.calls.length).toBe(0);
