@@ -19,9 +19,11 @@ import { registerAnalysisViewCommands } from "./cli/analysisViewCommands.js";
 import { registerBinaryDiagnosticsCommands } from "./cli/binaryDiagnosticsCommands.js";
 import { registerFridaCommands } from "./cli/fridaCommands.js";
 import type { FridaInstrumentationPort } from "./application/frida/FridaInstrumentationPort.js";
-import { Cli } from "incur";
-import { z } from "zod";
-import { normalizeCliArguments } from "./cliOutput.js";
+import { Cli, z } from "incur";
+import {
+  adaptCliOutputArgumentsForIncur,
+  normalizeCliArguments,
+} from "./cliBuiltinArguments.js";
 
 import { createLogger } from "./logger.js";
 import { parseLogLevel } from "./config/processStart.js";
@@ -171,7 +173,7 @@ export const createCli = (
   registerFirmwareCommands(cli, logger, environment);
   registerBinaryDiagnosticsCommands(cli, logger, environment);
   registerAnalysisViewCommands(cli, logger);
-  registerNativeFunctionMatchingCommands(cli, logger);
+  registerNativeFunctionMatchingCommands(cli, logger, environment);
   registerFridaCommands(cli, logger, fridaInstrumentation);
   registerEvidenceCommands(cli, logger);
   registerEnvironmentCommands(cli, logger, environment);
@@ -204,7 +206,10 @@ export const createCli = (
       : serveStrict(
           normalizeCliArguments(arguments_),
           options ?? {},
-          (tokens, selected) => serveDeclared(tokens, selected, serve),
+          (tokens, selected) =>
+            serveDeclared(tokens, selected, (declared, declaredOptions) =>
+              serve(adaptCliOutputArgumentsForIncur(declared), declaredOptions),
+            ),
         );
   return cli;
 };
