@@ -78,6 +78,7 @@ const formatSchema = z.enum([
   "pkg",
   "intel-hex",
   "srec",
+  "esp-image",
   "plist",
   "javascript",
   "source-map",
