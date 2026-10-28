@@ -51,3 +51,18 @@ cliTest(
     timingRecord(failed.stderr);
   },
 );
+
+cliTest(
+  "preserves formatted root version output when timings are requested",
+  async ({ cli }) => {
+    const plain = await cli.run({ arguments: ["--version", "--json"] });
+    const timed = await cli.run({
+      arguments: ["--timings", "--version", "--json"],
+    });
+    expect(plain.exitCode).toBe(0);
+    expect(plain.json).toBeTypeOf("object");
+    expect(timed.exitCode).toBe(0);
+    expect(timed.stdout).toBe(plain.stdout);
+    expect(timed.stderr).toBe("");
+  },
+);

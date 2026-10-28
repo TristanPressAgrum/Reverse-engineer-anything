@@ -44,8 +44,8 @@ export interface IncurBuiltinArgumentSplit {
 
 /**
  * Mirror Incur's builtin pass over normalized arguments without stopping at a
- * rejected value, so callers can still see every later token. REA configures
- * neither a config flag nor global options, which Incur would also remove.
+ * rejected value, so callers can still see every later token. REA's boolean
+ * timing global follows the same valueless pass; no config flag is registered.
  */
 export const splitIncurBuiltinArguments = (
   arguments_: readonly string[],

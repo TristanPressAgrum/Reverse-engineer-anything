@@ -57,7 +57,8 @@ stdout as a parseable result and writes
 `{"rea_timings":{"version":1,"command_ms":42}}` to stderr. `command_ms`
 measures CLI command dispatch and result delivery; it is not provider-only or
 analysis-only time. The flag is off by default, and the record omits stages
-that REA did not measure.
+that REA did not measure. Root version reporting does not dispatch a command
+and has no command timing record.
 
 ## JSON Lines record output
 
