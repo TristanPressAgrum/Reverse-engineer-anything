@@ -1,9 +1,10 @@
 import { execFile } from "node:child_process";
-import { chmod, readFile, realpath, writeFile } from "node:fs/promises";
+import { chmod, mkdir, readFile, realpath, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
 import { describe, expect, it } from "vitest";
+import { TextReader, Uint8ArrayWriter, ZipWriter } from "@zip.js/zip.js";
 import { systemDoctorHost } from "../../../src/application/Doctor.js";
 import { parseBinaryTarget } from "../../../src/application/BinaryTargetResolver.js";
 import { binaryTargetSummary } from "../../../src/application/binary/BinaryTargetSummary.js";
@@ -119,7 +120,7 @@ describe("executable format refusal diagnostics", () => {
 });
 
 describe("target route diagnostics", () => {
-  it.each(["module.wasm", "module.bin", "misleading.js"])(
+  it.each(["module.wasm", "module.bin", "misleading.js", "misleading.hop"])(
     "identifies a WASM v1 header in %s without suggesting native provider installation",
     async (name) => {
       const directory = await createTestTempDirectory("rea-wasm-target-");
@@ -427,6 +428,33 @@ describe("debug companion admission diagnostics", () => {
         constraint: "debug_companion_rejected",
         reason:
           "dsym_path applies only to Mach-O executable targets; this target is zip",
+      },
+    });
+  });
+
+  it("rejects dsym_path on a trailing-ZIP archive target instead of discarding it", async () => {
+    const directory = await createTestTempDirectory("rea-dsym-zip-tail-");
+    const writer = new ZipWriter(new Uint8ArrayWriter());
+    await writer.add("a.txt", new TextReader("hello\n"));
+    const zip = Buffer.from(await writer.close());
+    const path = join(directory, "selfextractor.tool");
+    await writeFile(
+      path,
+      Buffer.concat([Buffer.from("#!/bin/sh\nexit 0\n"), zip]),
+    );
+    const result = await parseBinaryTarget(path, {
+      dsymPath: join(directory, "selfextractor.dSYM"),
+    });
+    if (result.ok)
+      throw new Error("dsym with a trailing-ZIP archive was admitted");
+    const projected = projectAnalysisError(result.error);
+    expect(projected).toMatchObject({
+      code: "invalid_request",
+      category: "invalid_input",
+      details: {
+        constraint: "debug_companion_rejected",
+        reason:
+          "dsym_path applies only to Mach-O executable targets; this target is an archive with a trailing ZIP",
       },
     });
   });
@@ -813,6 +841,41 @@ describe("debug companion slice selection", () => {
       });
     },
   );
+
+  it("admits a watchOS arm64_32 companion by its own cputype", async () => {
+    const directory = await createTestTempDirectory("rea-dsym-arm6432-");
+    const uuid = "0123456789abcdef0123456789abcdef";
+    // Thin 32-bit Mach-O with LC_UUID; arm64_32 is cputype 0x0200000c, not
+    // arm64's 0x0100000c, so a family table keyed on the wrong constant would
+    // report the target as UUID-less and refuse this companion.
+    const thinArm64_32 = (): Buffer => {
+      const bytes = Buffer.alloc(28 + 24);
+      bytes.writeUInt32LE(0xfeedface, 0);
+      bytes.writeInt32LE(0x0200000c, 4);
+      bytes.writeUInt32LE(1, 16);
+      bytes.writeUInt32LE(24, 20);
+      bytes.writeUInt32LE(0x1b, 28);
+      bytes.writeUInt32LE(24, 32);
+      Buffer.from(uuid, "hex").copy(bytes, 36);
+      return bytes;
+    };
+    const target = join(directory, "watch.macho");
+    await writeFile(target, thinArm64_32());
+    const bundle = join(directory, "watch.dSYM");
+    await mkdir(`${bundle}/Contents/Resources/DWARF`, { recursive: true });
+    await writeFile(`${bundle}/Contents/Resources/DWARF/watch`, thinArm64_32());
+    const result = await parseBinaryTarget(target, { dsymPath: bundle });
+    if (!result.ok) {
+      throw new Error(
+        `arm64_32 companion was rejected: ${JSON.stringify(result.error)}`,
+      );
+    }
+    expect(result.value).toMatchObject({
+      format: "mach-o",
+      architecture: "arm64_32",
+      debugCompanion: { uuid: "01234567-89AB-CDEF-0123-456789ABCDEF" },
+    });
+  });
 });
 
 describe("caller-selected and inferred target interpretation", () => {

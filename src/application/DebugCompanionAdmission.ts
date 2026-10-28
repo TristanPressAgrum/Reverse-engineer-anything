@@ -24,6 +24,7 @@ import type {
   MachODebugCompanion,
   UniversalMachOSlice,
 } from "../domain/binaryTargetTypes.js";
+import { MACHO_ARCHITECTURE_POLICIES } from "../native/MachoArchitectureSelection.js";
 import { AnalysisCancelledError } from "../domain/analysisErrorCore.js";
 import {
   debugCompanionMatches,
@@ -51,6 +52,10 @@ const resourceLimit = (reason: string): MachOUuidReadFailure => ({
   kind: "resource-limit",
   reason,
 });
+const traversalLimit = (): MachOUuidReadFailure =>
+  resourceLimit(
+    `the Mach-O UUID traversal exceeds its aggregate read budget of ${String(TRAVERSAL_BUDGET_BYTES >> 20)} MiB across the target and dSYM members; the budget is fixed and cannot be raised at runtime`,
+  );
 const invalidImage = (reason: string): MachOUuidReadFailure => ({
   kind: "invalid-image",
   reason,
@@ -79,26 +84,30 @@ const isExpectedAdmissionPathFailure = (cause: unknown): boolean =>
   );
 
 /**
- * Mach-O cputypes for the provider-neutral CPU families REA admits, including
- * the 64-bit flag the ABI sets on x86_64 and arm64. MIPS has no Mach-O
- * cputype; a companion can never match it.
+ * Mach-O cputypes for the provider-neutral CPU families REA admits, taken
+ * from the shared architecture-selection owner (arm64_32 is 0x0200000c, not
+ * arm64's 0x0100000c). Architectures without a Mach-O policy — MIPS, 6502,
+ * RISCV, Hexagon, m68k, PowerPC — have no cputype, so a companion can never
+ * match them.
  */
+const machoFamilyCpuTypes = (
+  architecture: BinaryArchitecture,
+): readonly number[] => {
+  const policy = MACHO_ARCHITECTURE_POLICIES[architecture];
+  return policy === undefined ? [] : [policy.cpuType];
+};
 const CPU_TYPES: Readonly<Record<BinaryArchitecture, readonly number[]>> = {
-  x86: [0x00000007],
-  x86_64: [0x01000007],
-  arm: [0x0000000c],
-  arm64: [0x0100000c],
-  mips: [],
-  // 6502 is admitted only as an explicit raw load, never as a Mach-O family.
-  "6502": [],
-  // RISCV has no Mach-O cputype in REA's header families; it is ELF-only.
-  riscv: [],
-  // These families have no Mach-O cputype; companions can never match them.
-  hexagon: [],
-  m68k: [],
-  powerpc: [],
-  // arm64_32 (watchOS) has its own cputype but no distinct dSYM family here.
-  arm64_32: [0x0100000c],
+  x86: machoFamilyCpuTypes("x86"),
+  x86_64: machoFamilyCpuTypes("x86_64"),
+  arm: machoFamilyCpuTypes("arm"),
+  arm64: machoFamilyCpuTypes("arm64"),
+  arm64_32: machoFamilyCpuTypes("arm64_32"),
+  mips: machoFamilyCpuTypes("mips"),
+  "6502": machoFamilyCpuTypes("6502"),
+  riscv: machoFamilyCpuTypes("riscv"),
+  hexagon: machoFamilyCpuTypes("hexagon"),
+  m68k: machoFamilyCpuTypes("m68k"),
+  powerpc: machoFamilyCpuTypes("powerpc"),
 };
 
 /** Admitted identity of a caller-selected dSYM companion. */
@@ -114,7 +123,9 @@ export interface DebugCompanionRejection {
 
 const throwIfCancelled = (signal: AbortSignal | undefined): void => {
   if (signal?.aborted === true)
-    throw new AnalysisCancelledError("resolve_binary_target");
+    throw new AnalysisCancelledError("resolve_binary_target", {
+      cause: signal.reason,
+    });
 };
 
 /** Read a bounded window, charging actual I/O and observing cancellation. */
@@ -127,11 +138,7 @@ const readUuidWindow = async (
 ): Promise<Result<Buffer, MachOUuidReadFailure>> => {
   throwIfCancelled(signal);
   if (length > TRAVERSAL_BUDGET_BYTES - ledger.spent)
-    return err(
-      resourceLimit(
-        "the Mach-O traversal exceeds the supported aggregate budget",
-      ),
-    );
+    return err(traversalLimit());
   const bytes = Buffer.alloc(length);
   let filled = 0;
   while (filled < length) {
@@ -176,12 +183,7 @@ const readThinUuidEntry = async (
         length - request.offset,
         TRAVERSAL_BUDGET_BYTES - ledger.spent,
       );
-      if (windowLength < request.length)
-        return err(
-          resourceLimit(
-            "the Mach-O traversal exceeds the supported aggregate budget",
-          ),
-        );
+      if (windowLength < request.length) return err(traversalLimit());
       const read = await readUuidWindow(
         handle,
         offset + request.offset,
@@ -216,11 +218,7 @@ const chargeTraversal = (
 ): Result<null, MachOUuidReadFailure> => {
   ledger.spent += bytes;
   return ledger.spent > TRAVERSAL_BUDGET_BYTES
-    ? err(
-        resourceLimit(
-          "the Mach-O traversal exceeds the supported aggregate budget",
-        ),
-      )
+    ? err(traversalLimit())
     : ok(null);
 };
 
@@ -508,7 +506,7 @@ export const admitDebugCompanion = async (input: {
           if (!matched.ok) return ok(null);
           if (initial.size > MEMBER_SIZE_LIMIT_BYTES)
             return err({
-              reason: `dsym DWARF member exceeds the supported size: ${memberPath}`,
+              reason: `dsym DWARF member exceeds the supported size of ${String(MEMBER_SIZE_LIMIT_BYTES >> 30)} GiB: ${memberPath}`,
             });
 
           const memberSha256 = await digestOpenHandle(
@@ -553,11 +551,11 @@ export const admitDebugCompanion = async (input: {
       throwIfCancelled(signal);
       if (cause instanceof NonRegularFileReadError) continue;
       if (cause instanceof RegularFileChangedError)
-        throw new ArtifactReaderFailure(
-          "integrity",
-          "Selected dSYM DWARF member changed while being read",
-          { cause },
-        );
+        // Expected boundary condition, not a reader fault: report it as a
+        // typed admission rejection so session.open keeps its Result shape.
+        return err({
+          reason: `the dSYM DWARF member changed while being read: ${memberPath}`,
+        });
       const code =
         cause instanceof Error && "code" in cause ? cause.code : undefined;
       if (

@@ -446,7 +446,15 @@ const readOpenedBinaryTarget = async (
       (await locateTrailingZipArchive(metadata.size, (position, length) =>
         readHandleRange(handle, position, length, signal),
       )) !== undefined
-    )
+    ) {
+      if (dsymPath !== undefined)
+        return err(
+          new BinaryTargetError(
+            path,
+            "dsym_path applies only to Mach-O executable targets; this target is an archive with a trailing ZIP",
+            { constraint: "debug_companion_rejected" },
+          ),
+        );
       return ok({
         path,
         sourcePath,
@@ -455,6 +463,7 @@ const readOpenedBinaryTarget = async (
         format: zipRootPackageFormat(classificationPath),
         artifactSelectedPath: selectedPath,
       });
+    }
     const reason =
       typeof detected.error === "string"
         ? detected.error
